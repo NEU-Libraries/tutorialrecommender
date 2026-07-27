@@ -94,7 +94,7 @@
     border-bottom: 3px solid #1f5c80;
     padding-bottom: 14px;
   }
-  .page-title-area h2 {
+  .page-title-area h1 {
     font-size: 1.65rem;
     font-weight: 900;
     color: #0e4b74;
@@ -235,7 +235,7 @@
     color: var(--color-white);
   }
 
-  .results-section h3 {
+  .results-section h2 {
     font-size: 1.2rem;
     font-weight: 900;
     color: var(--color-text);
@@ -395,11 +395,17 @@
     color: var(--color-text-light);
     padding: 50px 20px;
   }
-  .empty-state h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--color-text); }
+  .empty-state h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--color-text); }
   .empty-state p { font-size: 0.9rem; }
 
   .no-results { text-align: center; padding: 40px; color: var(--color-primary-hover); }
-  .no-results h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+  .no-results h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+
+  .guide-fallback { text-align: left; }
+  .guide-fallback p { color: var(--color-text-light); margin: 6px 0 14px; }
+  .guide-links { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+  .research-needs { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--color-border); }
+  .research-needs p { font-weight: 700; font-size: 0.85rem; color: var(--color-text-light); margin-bottom: 8px; }
 
   @media (max-width: 768px) {
     .container { padding: 20px 16px 40px; }
@@ -416,7 +422,7 @@
 
 <div class="container">
   <div class="page-title-area">
-    <h2>Research Tutorial Finder</h2>
+    <h1>Research Tutorial Finder</h1>
     <p>Search across all <span id="tutorial-count"></span> library tutorials to find the best match for your research needs.</p>
   </div>
 
@@ -472,7 +478,7 @@
   <div class="results-section">
     <div id="results">
       <div class="empty-state">
-        <h3>Ready to Search</h3>
+        <h2>Ready to Search</h2>
         <p>Enter a search term above to find relevant tutorials.</p>
       </div>
     </div>
@@ -554,6 +560,7 @@
   function mapCategory(c) {
     if (!c) return 'research basics';
     var l = c.toLowerCase();
+    if (l.includes('basics')) return 'research basics';
     if (l.includes('cite')) return 'cite sources';
     if (l.includes('data') || l.includes('statistics')) return 'find sources';
     if (l.includes('evaluate')) return 'evaluate sources';
@@ -681,13 +688,1100 @@
     document.getElementById('uploadStatus').style.display = 'none';
   }
 
+  /* -- Course modules (H5P), matched first on exact course code -- */
+  var courseModules = [
+  {
+    "code": "EDU 6050",
+    "title": "Library materials for Week 5: Finding and citing different types of sources",
+    "link": "https://northeastern.h5p.com/content/1292032161549119628/embed"
+  },
+  {
+    "code": "EDU 6050",
+    "title": "Library materials for Week 4: Evaluating trustworthiness and developing academic research strategies",
+    "link": "https://northeastern.h5p.com/content/1292030474928844298/embed"
+  },
+  {
+    "code": "EDU 7217",
+    "title": "Library resources for EDU 7217",
+    "link": "https://northeastern.h5p.com/content/1292766454276197668/embed"
+  },
+  {
+    "code": "EDU 7204",
+    "title": "Library resources for EDU 7204",
+    "link": "https://northeastern.h5p.com/content/1292060752108613478/embed"
+  },
+  {
+    "code": "EDU 7207",
+    "title": "Library resources for EDU 7207",
+    "link": "https://northeastern.h5p.com/content/1292056420827372658/embed"
+  },
+  {
+    "code": "EDU 7218",
+    "title": "Library resources for EDU 7218",
+    "link": "https://northeastern.h5p.com/content/1292379362207009468/embed"
+  },
+  {
+    "code": "EDU 7311",
+    "title": "Library resources for EDU 7311",
+    "link": "https://northeastern.h5p.com/content/1292379359078504668/embed"
+  },
+  {
+    "code": "EDU 7225",
+    "title": "Library resources for EDU 7225",
+    "link": "https://northeastern.h5p.com/content/1292059043641484348/embed"
+  },
+  {
+    "code": "EDU 7256",
+    "title": "Library resources for EDU 7256",
+    "link": "https://northeastern.h5p.com/content/1292060760197838648/embed"
+  },
+  {
+    "code": "EDU 7253",
+    "title": "Library resources for EDU 7253",
+    "link": "https://northeastern.h5p.com/content/1292059011271040398/embed"
+  },
+  {
+    "code": "EDU 6218",
+    "title": "Library resources for EDU 6218",
+    "link": "https://northeastern.h5p.com/content/1292035720042513718/embed"
+  },
+  {
+    "code": "EDU 6051",
+    "title": "Library resources for EDU 6051",
+    "link": "https://northeastern.h5p.com/content/1292035601451525498/embed"
+  },
+  {
+    "code": "EDU 6107",
+    "title": "Library resources for EDU 6107",
+    "link": "https://northeastern.h5p.com/content/1292037426630802298/embed"
+  },
+  {
+    "code": "EDU 6202",
+    "title": "Library resources for EDU 6202",
+    "link": "https://northeastern.h5p.com/content/1292037361875755128/embed"
+  },
+  {
+    "code": "EDU 6205",
+    "title": "Library resources for EDU 6205",
+    "link": "https://northeastern.h5p.com/content/1292035692311775008/embed"
+  },
+  {
+    "code": "EDU 6217",
+    "title": "Library resources for EDU 6217",
+    "link": "https://northeastern.h5p.com/content/1292035711372528528/embed"
+  },
+  {
+    "code": "EDU 6219",
+    "title": "Library resources for EDU 6219",
+    "link": "https://northeastern.h5p.com/content/1292036360227403018/embed"
+  },
+  {
+    "code": "EDU 6222",
+    "title": "Library resources for EDU 6222",
+    "link": "https://northeastern.h5p.com/content/1292037265349558458/embed"
+  },
+  {
+    "code": "EDU 6429",
+    "title": "Library resources for EDU 6429",
+    "link": "https://northeastern.h5p.com/content/1292037409457471298/embed"
+  },
+  {
+    "code": "EDU 6569",
+    "title": "Library resources for EDU 6569",
+    "link": "https://northeastern.h5p.com/content/1292037386410092278/embed"
+  },
+  {
+    "code": "EDU 7295",
+    "title": "Education literature review search strategies: AI and Library resources",
+    "link": "https://northeastern.h5p.com/content/1292096103636317938/embed"
+  },
+  {
+    "code": "EDU 6659",
+    "title": "Library resources for EDU 6659",
+    "link": "https://northeastern.h5p.com/content/1292452967239281558/embed"
+  },
+  {
+    "code": "EDU 6204",
+    "title": "Library resources for EDU 6204",
+    "link": "https://northeastern.h5p.com/content/1292034851445233878/embed"
+  },
+  {
+    "code": "ITC 6305",
+    "title": "Library resources for ITC 6305",
+    "link": "https://northeastern.h5p.com/content/1292363874092438408/embed"
+  },
+  {
+    "code": "ITC 6035",
+    "title": "Library resources for ITC 6035",
+    "link": "https://northeastern.h5p.com/content/1292362318827617148/embed"
+  },
+  {
+    "code": "ITC 6020",
+    "title": "Library resources for ITC 6020",
+    "link": "https://northeastern.h5p.com/content/1292362230829622608/embed"
+  },
+  {
+    "code": "ITC 6015",
+    "title": "Library resources for ITC 6015",
+    "link": "https://northeastern.h5p.com/content/1292361449844031948/embed"
+  },
+  {
+    "code": "ITC 6040",
+    "title": "Library resources for ITC 6040",
+    "link": "https://northeastern.h5p.com/content/1292363952105649338/embed"
+  },
+  {
+    "code": "ITC 6400",
+    "title": "Library resources for ITC 6400",
+    "link": "https://northeastern.h5p.com/content/1292363817711916828/embed"
+  },
+  {
+    "code": "INT 6940",
+    "title": "Library resources for INT 6940",
+    "link": "https://northeastern.h5p.com/content/1292375157747714268/embed"
+  },
+  {
+    "code": "AAI 5035",
+    "title": "Library resources for AAI 5035",
+    "link": "https://northeastern.h5p.com/content/1292769309206480018/embed"
+  },
+  {
+    "code": "CMN 6080",
+    "title": "Library resources for CMN 6080",
+    "link": "https://northeastern.h5p.com/content/1292624180331218678/embed"
+  },
+  {
+    "code": "CMN 6940",
+    "title": "Library resources for CMN 6940",
+    "link": "https://northeastern.h5p.com/content/1292624083929998998/embed"
+  },
+  {
+    "code": "CMN 6040",
+    "title": "Library resources for CMN 6040",
+    "link": "https://northeastern.h5p.com/content/1292600754314024038/embed"
+  },
+  {
+    "code": "CMN 6005",
+    "title": "Library resources for CMN 6005",
+    "link": "https://northeastern.h5p.com/content/1292624159884177698/embed"
+  },
+  {
+    "code": "CMN 6000",
+    "title": "Library resources for CMN 6000",
+    "link": "https://northeastern.h5p.com/content/1292623036502041548/embed"
+  },
+  {
+    "code": "PJM 6145",
+    "title": "Library Resources for PJM 6145",
+    "link": "https://northeastern.h5p.com/content/1292363821776341878/embed"
+  },
+  {
+    "code": "PJM 5900",
+    "title": "Library Resources for PJM 5900",
+    "link": "https://northeastern.h5p.com/content/1292363820214885338/embed"
+  },
+  {
+    "code": "PJM 6005",
+    "title": "Library Resources for PJM 6005",
+    "link": "https://northeastern.h5p.com/content/1292363820913876728/embed"
+  },
+  {
+    "code": "HRM 6940",
+    "title": "HRM 6940 Library Resources",
+    "link": "https://northeastern.h5p.com/content/1292370861774704758/embed"
+  },
+  {
+    "code": "HRM 6020",
+    "title": "HRM 6020 Library Resources",
+    "link": "https://northeastern.h5p.com/content/1292370862168425118/embed"
+  },
+  {
+    "code": "HRM 20391",
+    "title": "HRM 20391 Library Resources",
+    "link": "https://northeastern.h5p.com/content/1292370862732890488/embed"
+  },
+  {
+    "code": "INTB 1203",
+    "title": "INTB 1203: Market Entry Project",
+    "link": "https://northeastern.h5p.com/content/1292799408062424968/embed"
+  },
+  {
+    "code": "ALY 6040",
+    "title": "Library Research for Analytics (ALY 6040)",
+    "link": "https://northeastern.h5p.com/content/1292028770710151638/embed"
+  },
+  {
+    "code": "ALY 6010",
+    "title": "Library Research for Analytics (ALY 6010)",
+    "link": "https://northeastern.h5p.com/content/1292032046112161118/embed"
+  },
+  {
+    "code": "ALY 6980",
+    "title": "Library Research for Analytics (ALY 6980)",
+    "link": "https://northeastern.h5p.com/content/1292024469890847738/embed"
+  },
+  {
+    "code": "RGA 6002",
+    "title": "Library resources for RGA 6002",
+    "link": "https://northeastern.h5p.com/content/1292399379442535498/embed"
+  },
+  {
+    "code": "RGA 6101",
+    "title": "Library resources for RGA 6101",
+    "link": "https://northeastern.h5p.com/content/1292407082774638968/embed"
+  },
+  {
+    "code": "RGA 6000",
+    "title": "Library resources for RGA 6000",
+    "link": "https://northeastern.h5p.com/content/1292399451518516998/embed"
+  },
+  {
+    "code": "RGA 6212",
+    "title": "Library resources for RGA 6212",
+    "link": "https://northeastern.h5p.com/content/1292404644548442148/embed"
+  },
+  {
+    "code": "RGA 6234",
+    "title": "Library resources for RGA 6234",
+    "link": "https://northeastern.h5p.com/content/1292407224208920678/embed"
+  },
+  {
+    "code": "RGA 6217",
+    "title": "Library resources for RGA 6217",
+    "link": "https://northeastern.h5p.com/content/1292407216832458878/embed"
+  },
+  {
+    "code": "RGA 6204",
+    "title": "Library resources for RGA 6204",
+    "link": "https://northeastern.h5p.com/content/1292401123117368828/embed"
+  },
+  {
+    "code": "RGA 6203",
+    "title": "Library resources for RGA 6203",
+    "link": "https://northeastern.h5p.com/content/1292399494366520248/embed"
+  },
+  {
+    "code": "APL 6020",
+    "title": "Library resources for APL 6020",
+    "link": "https://northeastern.h5p.com/content/1292621445570790628/embed"
+  },
+  {
+    "code": "APL 6000",
+    "title": "Library resources for APL 6000",
+    "link": "https://northeastern.h5p.com/content/1292621443871351388"
+  },
+  {
+    "code": "APL 6030",
+    "title": "Library resources for APL 6030",
+    "link": "https://northeastern.h5p.com/content/1292621445725599228/embed"
+  },
+  {
+    "code": "APL 6050",
+    "title": "Library resources for APL 6050",
+    "link": "https://northeastern.h5p.com/content/1292621445886571928/embed"
+  },
+  {
+    "code": "APL 6100",
+    "title": "Library resources for APL 6100",
+    "link": "https://northeastern.h5p.com/content/1292621446105870268/embed"
+  },
+  {
+    "code": "APL 6980",
+    "title": "Library resources for APL 6980",
+    "link": "https://northeastern.h5p.com/content/1292483254997311768/embed"
+  }
+];
+
+  /* -- Program-level modules matched by code prefix, e.g. 'NPM 5000' or 'LDR 6210' -- */
+  var programModules = [
+    { prefix: 'NPM', title: 'Non Profit Management Library Resources', link: 'https://northeastern.h5p.com/content/1292370882554044738/embed' },
+    { prefix: 'LDR', title: 'Leadership Library Resources', link: 'https://northeastern.h5p.com/content/1292358608861050538/embed' }
+  ];
+
+  /* -- Course-specific LibGuides, matched second on exact course code (or by name if no code) -- */
+  var courseGuides = [
+  {
+    "name": "Advanced Writing in the Disciplines (AWD)",
+    "url": "https://subjectguides.lib.neu.edu/awd",
+    "codes": []
+  },
+  {
+    "name": "ARTD 2252: Graphic Design Principles and ARTH 2215 History of Graphic Design (Prof. Doug Scott)",
+    "url": "https://subjectguides.lib.neu.edu/ARTD2252andARTH2215",
+    "codes": [
+      "ARTD 2252",
+      "ARTH 2215"
+    ]
+  },
+  {
+    "name": "ARTD 2360: Introduction to Photography",
+    "url": "https://subjectguides.lib.neu.edu/ARTD2360",
+    "codes": [
+      "ARTD 2360"
+    ]
+  },
+  {
+    "name": "ARTH 2212: Survey of the Still and Moving Image",
+    "url": "https://subjectguides.lib.neu.edu/ARTH2212",
+    "codes": [
+      "ARTH 2212"
+    ]
+  },
+  {
+    "name": "BIOL 2309: Biology Project Lab",
+    "url": "https://subjectguides.lib.neu.edu/BIOL-2309",
+    "codes": [
+      "BIOL 2309"
+    ]
+  },
+  {
+    "name": "Boston Public Schools, Re-Writing History: The Boston Busing Crisis",
+    "url": "https://subjectguides.lib.neu.edu/BPS",
+    "codes": []
+  },
+  {
+    "name": "CHME 5630: Biochemical Engineering Fundamentals",
+    "url": "https://subjectguides.lib.neu.edu/CHME-5630",
+    "codes": [
+      "CHME 5630"
+    ]
+  },
+  {
+    "name": "CLTR 1501: Introduction to French Culture",
+    "url": "https://subjectguides.lib.neu.edu/CLTR1501",
+    "codes": [
+      "CLTR 1501"
+    ]
+  },
+  {
+    "name": "Dialogue of Civilizations - Summer 1, 2025",
+    "url": "https://subjectguides.lib.neu.edu/dialogueofcivilizations",
+    "codes": []
+  },
+  {
+    "name": "ENGL 3325 - Rhetoric of Law",
+    "url": "https://subjectguides.lib.neu.edu/rhetoric-law",
+    "codes": [
+      "ENGL 3325"
+    ]
+  },
+  {
+    "name": "First-Year Writing Resources",
+    "url": "https://subjectguides.lib.neu.edu/writing",
+    "codes": []
+  },
+  {
+    "name": "LPSC 3307 - Understanding the Modern Supreme Court",
+    "url": "https://subjectguides.lib.neu.edu/supremecourt",
+    "codes": [
+      "LPSC 3307"
+    ]
+  },
+  {
+    "name": "LPSC 7311: Strategizing Public Policy",
+    "url": "https://subjectguides.lib.neu.edu/LPSC-7311",
+    "codes": [
+      "LPSC 7311"
+    ]
+  },
+  {
+    "name": "LWP 6401, 6402, and 6403: Law and Policy Concepts 1, 2, and 3",
+    "url": "https://subjectguides.lib.neu.edu/DLPLaw/Policy",
+    "codes": [
+      "LWP 6401",
+      "LWP 6402",
+      "LWP 6403"
+    ]
+  },
+  {
+    "name": "MUSC 3353 Music and the Racial Imagination",
+    "url": "https://subjectguides.lib.neu.edu/MUSC3353",
+    "codes": [
+      "MUSC 3353"
+    ]
+  },
+  {
+    "name": "PHTH 1260: American Healthcare System",
+    "url": "https://subjectguides.lib.neu.edu/phth1260",
+    "codes": [
+      "PHTH 1260"
+    ]
+  },
+  {
+    "name": "PHTH 6410: Population Health Research",
+    "url": "https://subjectguides.lib.neu.edu/phth6410",
+    "codes": [
+      "PHTH 6410"
+    ]
+  },
+  {
+    "name": "THTR 1235 Fashion and Costume Design in Film and Television (Prof. Rosenfeld)",
+    "url": "https://subjectguides.lib.neu.edu/THTR1235",
+    "codes": [
+      "THTR 1235"
+    ]
+  }
+];
+
+  /* -- Subject LibGuides, matched last by name/keyword overlap -- */
+  var subjectGuides = [
+  {
+    "name": "Accounting",
+    "url": "https://subjectguides.lib.neu.edu/accounting"
+  },
+  {
+    "name": "Africana Studies",
+    "url": "https://subjectguides.lib.neu.edu/africana_studies"
+  },
+  {
+    "name": "American Sign Language (ASL) and Interpreting",
+    "url": "https://subjectguides.lib.neu.edu/asl"
+  },
+  {
+    "name": "Analytics",
+    "url": "https://subjectguides.lib.neu.edu/analytics"
+  },
+  {
+    "name": "Anthropology",
+    "url": "https://subjectguides.lib.neu.edu/ANTHRO"
+  },
+  {
+    "name": "Applied Behavior Analysis",
+    "url": "https://subjectguides.lib.neu.edu/aba"
+  },
+  {
+    "name": "Applied Logistics, Supply Chain, & Information Management",
+    "url": "https://subjectguides.lib.neu.edu/supply_chain"
+  },
+  {
+    "name": "Applied Machine Intelligence",
+    "url": "https://subjectguides.lib.neu.edu/appliedMachineIntel"
+  },
+  {
+    "name": "Architecture",
+    "url": "https://subjectguides.lib.neu.edu/architecture"
+  },
+  {
+    "name": "Art and Design",
+    "url": "https://subjectguides.lib.neu.edu/artdesign"
+  },
+  {
+    "name": "Artificial Intelligence & Business",
+    "url": "https://subjectguides.lib.neu.edu/business_of_ai"
+  },
+  {
+    "name": "Asian American Studies",
+    "url": "https://subjectguides.lib.neu.edu/Asian_American_Studies"
+  },
+  {
+    "name": "Behavioral Neuroscience",
+    "url": "https://subjectguides.lib.neu.edu/behavioralneuroscience"
+  },
+  {
+    "name": "Biochemistry",
+    "url": "https://subjectguides.lib.neu.edu/biochemistry"
+  },
+  {
+    "name": "Bioengineering",
+    "url": "https://subjectguides.lib.neu.edu/bioengineering"
+  },
+  {
+    "name": "Bioinformatics",
+    "url": "https://subjectguides.lib.neu.edu/bioinformatics"
+  },
+  {
+    "name": "Biology",
+    "url": "https://subjectguides.lib.neu.edu/biology"
+  },
+  {
+    "name": "Biophysics",
+    "url": "https://subjectguides.lib.neu.edu/biophysics"
+  },
+  {
+    "name": "Biotechnology",
+    "url": "https://subjectguides.lib.neu.edu/biotechnology"
+  },
+  {
+    "name": "Bouvé Faculty & Staff",
+    "url": "https://subjectguides.lib.neu.edu/bouve"
+  },
+  {
+    "name": "Business Administration",
+    "url": "https://subjectguides.lib.neu.edu/business_admin"
+  },
+  {
+    "name": "Cell and Gene Therapies",
+    "url": "https://subjectguides.lib.neu.edu/cell-gene-therapies"
+  },
+  {
+    "name": "Chemical Engineering",
+    "url": "https://subjectguides.lib.neu.edu/chemical_engineering"
+  },
+  {
+    "name": "Chemistry",
+    "url": "https://subjectguides.lib.neu.edu/chemistry"
+  },
+  {
+    "name": "Civil & Environmental Engineering",
+    "url": "https://subjectguides.lib.neu.edu/civil_environmental_engineering"
+  },
+  {
+    "name": "Climate Science and Engineering",
+    "url": "https://subjectguides.lib.neu.edu/climate-science"
+  },
+  {
+    "name": "Communication Sciences & Disorders",
+    "url": "https://subjectguides.lib.neu.edu/csd"
+  },
+  {
+    "name": "Communication Studies",
+    "url": "https://subjectguides.lib.neu.edu/comm"
+  },
+  {
+    "name": "Computer Science",
+    "url": "https://subjectguides.lib.neu.edu/compsci"
+  },
+  {
+    "name": "Corporate & Organizational Communication",
+    "url": "https://subjectguides.lib.neu.edu/orgcomm"
+  },
+  {
+    "name": "Criminal Justice",
+    "url": "https://subjectguides.lib.neu.edu/cj"
+  },
+  {
+    "name": "Data Science",
+    "url": "https://subjectguides.lib.neu.edu/datasci"
+  },
+  {
+    "name": "Digital Media",
+    "url": "https://subjectguides.lib.neu.edu/DigitalMedia"
+  },
+  {
+    "name": "Disability & Accessibility",
+    "url": "https://subjectguides.lib.neu.edu/disability"
+  },
+  {
+    "name": "Doctor of Law and Policy",
+    "url": "https://subjectguides.lib.neu.edu/dlpcps"
+  },
+  {
+    "name": "Economics",
+    "url": "https://subjectguides.lib.neu.edu/economics"
+  },
+  {
+    "name": "Education",
+    "url": "https://subjectguides.lib.neu.edu/edresearch"
+  },
+  {
+    "name": "Electrical and Computer Engineering",
+    "url": "https://subjectguides.lib.neu.edu/electrical_computer_engineering"
+  },
+  {
+    "name": "English: Literature, Rhetoric, and Composition",
+    "url": "https://subjectguides.lib.neu.edu/english"
+  },
+  {
+    "name": "Entrepreneurship",
+    "url": "https://subjectguides.lib.neu.edu/entrepreneurship"
+  },
+  {
+    "name": "Environmental Research Across Disciplines",
+    "url": "https://subjectguides.lib.neu.edu/environment"
+  },
+  {
+    "name": "Environmental Science",
+    "url": "https://subjectguides.lib.neu.edu/environmentalscience"
+  },
+  {
+    "name": "Ethnic Studies",
+    "url": "https://subjectguides.lib.neu.edu/ETHS"
+  },
+  {
+    "name": "Federal Government",
+    "url": "https://subjectguides.lib.neu.edu/fedgov"
+  },
+  {
+    "name": "Finance",
+    "url": "https://subjectguides.lib.neu.edu/finance_research"
+  },
+  {
+    "name": "Game Design",
+    "url": "https://subjectguides.lib.neu.edu/gamedesign"
+  },
+  {
+    "name": "General Science",
+    "url": "https://subjectguides.lib.neu.edu/science"
+  },
+  {
+    "name": "Geriatrics and Gerontology",
+    "url": "https://subjectguides.lib.neu.edu/geriatrics_gerontology"
+  },
+  {
+    "name": "Health Informatics",
+    "url": "https://subjectguides.lib.neu.edu/healthinformatics"
+  },
+  {
+    "name": "Health Sciences",
+    "url": "https://subjectguides.lib.neu.edu/healthsciences"
+  },
+  {
+    "name": "Human Services",
+    "url": "https://subjectguides.lib.neu.edu/human_services"
+  },
+  {
+    "name": "Indigenous Studies",
+    "url": "https://subjectguides.lib.neu.edu/IndigenousStudies"
+  },
+  {
+    "name": "Informatics and Information Technology",
+    "url": "https://subjectguides.lib.neu.edu/informatics"
+  },
+  {
+    "name": "International Affairs and Global Studies",
+    "url": "https://subjectguides.lib.neu.edu/iaf"
+  },
+  {
+    "name": "International Business",
+    "url": "https://subjectguides.lib.neu.edu/international_business"
+  },
+  {
+    "name": "Interprofessional Education, Research and Practice",
+    "url": "https://subjectguides.lib.neu.edu/interprofessionaleducation"
+  },
+  {
+    "name": "Jewish Studies",
+    "url": "https://subjectguides.lib.neu.edu/JewishStudies"
+  },
+  {
+    "name": "Journalism",
+    "url": "https://subjectguides.lib.neu.edu/journalism"
+  },
+  {
+    "name": "Latinx, Latin American and Caribbean Studies",
+    "url": "https://subjectguides.lib.neu.edu/latin_america_caribbean_studies"
+  },
+  {
+    "name": "Leadership",
+    "url": "https://subjectguides.lib.neu.edu/leadership"
+  },
+  {
+    "name": "Legal Studies Research",
+    "url": "https://subjectguides.lib.neu.edu/legal"
+  },
+  {
+    "name": "LGBTQIA Studies",
+    "url": "https://subjectguides.lib.neu.edu/LGBT"
+  },
+  {
+    "name": "Linguistics",
+    "url": "https://subjectguides.lib.neu.edu/linguistics"
+  },
+  {
+    "name": "Marine Science",
+    "url": "https://subjectguides.lib.neu.edu/marinescience"
+  },
+  {
+    "name": "Marketing",
+    "url": "https://subjectguides.lib.neu.edu/marketing_research"
+  },
+  {
+    "name": "Mathematics",
+    "url": "https://subjectguides.lib.neu.edu/math"
+  },
+  {
+    "name": "Mechanical and Industrial Engineering",
+    "url": "https://subjectguides.lib.neu.edu/meie"
+  },
+  {
+    "name": "Media and Screen Studies",
+    "url": "https://subjectguides.lib.neu.edu/media"
+  },
+  {
+    "name": "Middle East Studies",
+    "url": "https://subjectguides.lib.neu.edu/middleeast"
+  },
+  {
+    "name": "Model UN, NATO, and Arab League",
+    "url": "https://subjectguides.lib.neu.edu/model"
+  },
+  {
+    "name": "Music",
+    "url": "https://subjectguides.lib.neu.edu/music"
+  },
+  {
+    "name": "Nanomedicine",
+    "url": "https://subjectguides.lib.neu.edu/nanomedicine"
+  },
+  {
+    "name": "Nanotechnology",
+    "url": "https://subjectguides.lib.neu.edu/nanotechnology"
+  },
+  {
+    "name": "Non-Profit Management",
+    "url": "https://subjectguides.lib.neu.edu/nonprofitmanage"
+  },
+  {
+    "name": "Nursing",
+    "url": "https://subjectguides.lib.neu.edu/nursing"
+  },
+  {
+    "name": "Nutrition",
+    "url": "https://subjectguides.lib.neu.edu/nutrition"
+  },
+  {
+    "name": "Patents",
+    "url": "https://subjectguides.lib.neu.edu/patents"
+  },
+  {
+    "name": "Patient Safety",
+    "url": "https://subjectguides.lib.neu.edu/patientsafety"
+  },
+  {
+    "name": "Pharmacy/Pharmaceutical Sciences",
+    "url": "https://subjectguides.lib.neu.edu/pharmacy"
+  },
+  {
+    "name": "Philosophy",
+    "url": "https://subjectguides.lib.neu.edu/philosophy"
+  },
+  {
+    "name": "Physical Therapy, Movement & Rehabilitation Sciences",
+    "url": "https://subjectguides.lib.neu.edu/physical_therapy"
+  },
+  {
+    "name": "Physician Assistant",
+    "url": "https://subjectguides.lib.neu.edu/physician_assistant"
+  },
+  {
+    "name": "Physics",
+    "url": "https://subjectguides.lib.neu.edu/physics"
+  },
+  {
+    "name": "Political Science",
+    "url": "https://subjectguides.lib.neu.edu/polisci"
+  },
+  {
+    "name": "Project Management",
+    "url": "https://subjectguides.lib.neu.edu/projectmanagement"
+  },
+  {
+    "name": "Psychology",
+    "url": "https://subjectguides.lib.neu.edu/psychology"
+  },
+  {
+    "name": "Public Administration",
+    "url": "https://subjectguides.lib.neu.edu/publicadministration"
+  },
+  {
+    "name": "Public Health",
+    "url": "https://subjectguides.lib.neu.edu/publichealth"
+  },
+  {
+    "name": "Public Policy and Urban Affairs",
+    "url": "https://subjectguides.lib.neu.edu/publicpolicy"
+  },
+  {
+    "name": "Regulatory Affairs for Drugs, Biologics and Medical Devices",
+    "url": "https://subjectguides.lib.neu.edu/regulatoryaffairs"
+  },
+  {
+    "name": "Religious Studies",
+    "url": "https://subjectguides.lib.neu.edu/religion"
+  },
+  {
+    "name": "Resources for Engineering Faculty",
+    "url": "https://subjectguides.lib.neu.edu/COE-faculty-research"
+  },
+  {
+    "name": "Shakespeare Research",
+    "url": "https://subjectguides.lib.neu.edu/shakespeare"
+  },
+  {
+    "name": "Social Science Statistics and Data",
+    "url": "https://subjectguides.lib.neu.edu/socscistats/data"
+  },
+  {
+    "name": "Sociology",
+    "url": "https://subjectguides.lib.neu.edu/sociology"
+  },
+  {
+    "name": "Sports Leadership",
+    "url": "https://subjectguides.lib.neu.edu/sportsoc"
+  },
+  {
+    "name": "Sustainability & Green Business",
+    "url": "https://subjectguides.lib.neu.edu/green_business"
+  },
+  {
+    "name": "Theatre and Performing Arts",
+    "url": "https://subjectguides.lib.neu.edu/theatre"
+  },
+  {
+    "name": "Women's, Gender, and Sexuality Studies",
+    "url": "https://subjectguides.lib.neu.edu/women"
+  },
+  {
+    "name": "World Languages & Cultures",
+    "url": "https://subjectguides.lib.neu.edu/worldlanguages"
+  }
+];
+
+  /* ── Course/subject guide fallback matching ──
+     Order when a search matches no tutorials: course module (exact code) →
+     course guide (exact code) → course/subject guide (name match) → generic message.
+     Always shown alongside: quick links into the 4 common research-need categories. */
+
+  function normalizeCode(s) {
+    return (s || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  }
+
+  function findCourseModuleMatches(query) {
+    var normQ = normalizeCode(query);
+    if (!normQ) return [];
+    var exact = courseModules.filter(function(m) { return normalizeCode(m.code) === normQ; });
+    if (exact.length) return exact;
+    var progMatch = normQ.match(/^(NPM|LDR)\d*$/);
+    if (progMatch) {
+      var prog = programModules.filter(function(p) { return p.prefix === progMatch[1]; });
+      if (prog.length) return prog.map(function(p) { return { code: p.prefix, title: p.title, link: p.link }; });
+    }
+    return [];
+  }
+
+  function findCourseGuideCodeMatches(query) {
+    var normQ = normalizeCode(query);
+    if (!normQ) return [];
+    return courseGuides.filter(function(g) {
+      return g.codes.some(function(c) { return normalizeCode(c) === normQ; });
+    });
+  }
+
+  function tokenize(s) {
+    return s.toLowerCase().split(/[^a-z0-9]+/).filter(function(w) { return w.length > 1 && !stopWords.has(w); });
+  }
+
+  function buildAliases(name) {
+    var clean = name.replace(/[():]/g, ' ');
+    var parts = clean.split(/,|&|\/|\band\b/i).map(function(p) { return p.trim(); }).filter(Boolean);
+    var aliases = [name].concat(parts);
+    var seen = {};
+    return aliases.filter(function(a) {
+      var key = a.toLowerCase();
+      if (seen[key]) return false;
+      seen[key] = true;
+      return true;
+    });
+  }
+
+  function escapeRegex(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  // Word-boundary substring check so e.g. "science" doesn't match inside "neuroscience".
+  function containsPhrase(haystack, needle) {
+    return new RegExp('\\b' + escapeRegex(needle) + '\\b').test(haystack);
+  }
+
+  // A query that exactly equals a guide's name/alias (once tokenized) is a confident
+  // signal the user typed a subject/course name rather than a research question —
+  // strong enough to take priority over a weak, coincidental tutorial match.
+  var NAME_MATCH_EXACT = 20;
+  // Query captures most of a (longer) official name/fragment — e.g. "first year
+  // writing" for "First-Year Writing Resources". Also override-worthy.
+  var NAME_MATCH_QUERY_IN_ALIAS = 16;
+  // The override threshold: at or above this, a course/subject guide match is
+  // confident enough to take priority over the fuzzy tutorial search entirely.
+  var NAME_MATCH_OVERRIDE_THRESHOLD = NAME_MATCH_QUERY_IN_ALIAS;
+
+  function scoreNameMatch(query, name) {
+    var qWords = tokenize(query);
+    if (!qWords.length) return 0;
+    var qNorm = qWords.join(' ');
+    var best = 0;
+    // buildAliases()[0] is always the full, untouched guide name; later entries are
+    // fragments split out of compound names (e.g. "X and Y" -> "X", "Y"). Only the
+    // full name can earn the top exact-match score — a bare split fragment like
+    // "Engineering" (from "Climate Science and Engineering") exactly equaling a
+    // generic one-word query shouldn't be treated as confidently as the real thing.
+    buildAliases(name).forEach(function(alias, idx) {
+      var aliasWords = tokenize(alias);
+      if (!aliasWords.length) return;
+      var aliasNorm = aliasWords.join(' ');
+      var score;
+      if (aliasNorm === qNorm) {
+        score = (idx === 0) ? NAME_MATCH_EXACT : 14;
+      } else if (containsPhrase(aliasNorm, qNorm) && qWords.length >= aliasWords.length * 0.6) {
+        // The query is (most of) a phrase inside the official name/fragment — e.g.
+        // "first year writing" inside "First-Year Writing Resources". Requiring it
+        // to cover a majority of the alias's words avoids letting a single generic
+        // word (e.g. "engineering" inside "Climate Science and Engineering") count
+        // as this same confident signal.
+        score = NAME_MATCH_QUERY_IN_ALIAS;
+      } else if (containsPhrase(aliasNorm, qNorm) || containsPhrase(qNorm, aliasNorm)) {
+        // Either a low-coverage phrase match, or the reverse direction — the guide
+        // name/fragment merely appears somewhere inside a longer query (e.g.
+        // "nursing" inside "how do I find sources for my nursing paper"). Real,
+        // but too weak a signal to override a genuine tutorial match — only
+        // surfaced when the tutorial search comes up empty.
+        score = 12;
+      } else {
+        var aliasWordSet = new Set(aliasWords);
+        var overlap = qWords.filter(function(w) { return aliasWordSet.has(w); }).length;
+        score = overlap * 4;
+      }
+      if (score > best) best = score;
+    });
+    return best;
+  }
+
+  function findNameGuideMatches(query) {
+    var candidates = [];
+    courseGuides.forEach(function(g) {
+      if (g.codes.length) return;
+      var score = scoreNameMatch(query, g.name);
+      if (score > 0) candidates.push({ type: 'course', name: g.name, url: g.url, score: score });
+    });
+    subjectGuides.forEach(function(s) {
+      var score = scoreNameMatch(query, s.name);
+      if (score > 0) candidates.push({ type: 'subject', name: s.name, url: s.url, score: score });
+    });
+    if (!candidates.length) return [];
+    candidates.sort(function(a, b) { return b.score - a.score; });
+    if (candidates[0].score < 4) return [];
+    var top = candidates[0].score;
+    return candidates.filter(function(c) { return c.score >= top * 0.6; }).slice(0, 4);
+  }
+
+  function guideLinksHTML(items) {
+    return '<div class="guide-links">' + items.map(function(it) {
+      return '<a href="' + sanitizeURL(it.url) + '" target="_blank" rel="noopener noreferrer" class="access-button">'
+        + escapeHTML(it.title) + ' ' + extIcon() + '</a>';
+    }).join('') + '</div>';
+  }
+
+  function researchNeedsHTML() {
+    return '<div class="research-needs">'
+      + '<p>Or browse tutorials for a common research need:</p>'
+      + '<button class="example-query" onclick="useExample(this)">find sources</button>'
+      + '<button class="example-query" onclick="useExample(this)">evaluate sources</button>'
+      + '<button class="example-query" onclick="useExample(this)">cite sources</button>'
+      + '<button class="example-query" onclick="useExample(this)">narrow my topic</button>'
+      + '</div>';
+  }
+
+  function nameGuideBodyHTML(nameMatches) {
+    if (nameMatches.length === 1) {
+      var single = nameMatches[0];
+      return '<p>' + (single.type === 'course' ? 'We found a course guide that might help:' : 'We found a subject guide that might help:') + '</p>'
+        + guideLinksHTML([{ title: single.name, url: single.url }]);
+    }
+    return '<p>Did you mean one of these guides?</p>' + guideLinksHTML(nameMatches.map(function(m) { return { title: m.name, url: m.url }; }));
+  }
+
+  function renderNameGuideMatch(query, nameMatches) {
+    var div = document.getElementById('results');
+    var safeQuery = escapeHTML(query);
+    div.innerHTML = '<div class="no-results guide-fallback">'
+      + '<h2 id="results-heading" tabindex="-1">Library resources for &ldquo;' + safeQuery + '&rdquo;</h2>'
+      + nameGuideBodyHTML(nameMatches)
+      + researchNeedsHTML()
+      + '</div>';
+    var heading = document.getElementById('results-heading');
+    if (heading) heading.focus();
+  }
+
+  function renderNoResultsFallback(query) {
+    var div = document.getElementById('results');
+    var safeQuery = escapeHTML(query);
+
+    var moduleMatches = findCourseModuleMatches(query);
+    var guideMatches = moduleMatches.length ? [] : findCourseGuideCodeMatches(query);
+    var nameMatches = (moduleMatches.length || guideMatches.length) ? [] : findNameGuideMatches(query);
+
+    var body;
+    if (moduleMatches.length) {
+      body = '<p>This looks like a course code. We found ' + (moduleMatches.length > 1 ? 'these library modules' : 'this library module') + ' for it:</p>'
+        + guideLinksHTML(moduleMatches.map(function(m) { return { title: m.title, url: m.link }; }));
+    } else if (guideMatches.length) {
+      body = '<p>This looks like a course code. We found ' + (guideMatches.length > 1 ? 'these course guides' : 'a course guide') + ' for it:</p>'
+        + guideLinksHTML(guideMatches.map(function(g) { return { title: g.name, url: g.url }; }));
+    } else if (nameMatches.length) {
+      body = nameGuideBodyHTML(nameMatches);
+    } else {
+      body = '<p>Try different keywords or adjust your filters.</p>';
+    }
+
+    div.innerHTML = '<div class="no-results guide-fallback">'
+      + '<h2 id="results-heading" tabindex="-1">No tutorials found for &ldquo;' + safeQuery + '&rdquo;</h2>'
+      + body
+      + researchNeedsHTML()
+      + '</div>';
+
+    var heading = document.getElementById('results-heading');
+    if (heading) heading.focus();
+  }
+
   /* ── Search ── */
+  function renderCourseCodeMatch(query, moduleMatches, guideMatches) {
+    var div = document.getElementById('results');
+    var safeQuery = escapeHTML(query);
+    var body;
+    if (moduleMatches.length) {
+      body = '<p>' + (moduleMatches.length > 1 ? 'Here are the library modules for this course:' : 'Here is the library module for this course:') + '</p>'
+        + guideLinksHTML(moduleMatches.map(function(m) { return { title: m.title, url: m.link }; }));
+    } else {
+      body = '<p>' + (guideMatches.length > 1 ? 'Here are the course guides for this course:' : 'Here is the course guide for this course:') + '</p>'
+        + guideLinksHTML(guideMatches.map(function(g) { return { title: g.name, url: g.url }; }));
+    }
+
+    div.innerHTML = '<div class="no-results guide-fallback">'
+      + '<h2 id="results-heading" tabindex="-1">Library resources for &ldquo;' + safeQuery + '&rdquo;</h2>'
+      + body
+      + researchNeedsHTML()
+      + '</div>';
+
+    var heading = document.getElementById('results-heading');
+    if (heading) heading.focus();
+  }
+
   function searchTutorials() {
     var query = document.getElementById('searchInput').value.trim();
     if (!query || !tutorials.length) return;
 
     var catFilter = document.getElementById('categoryFilter').value;
     var fmtFilter = document.getElementById('formatFilter').value;
+
+    // A recognized course code takes priority over fuzzy tutorial matches,
+    // since the base search scores on substring overlap and a short code
+    // like "edu 6050" can otherwise return a weak, coincidental tutorial hit.
+    var moduleMatches = findCourseModuleMatches(query);
+    var guideCodeMatches = moduleMatches.length ? [] : findCourseGuideCodeMatches(query);
+    if (moduleMatches.length || guideCodeMatches.length) {
+      logSearch(query, catFilter, fmtFilter, moduleMatches.length + guideCodeMatches.length);
+      renderCourseCodeMatch(query, moduleMatches, guideCodeMatches);
+      var courseAnn = document.getElementById('search-announcer');
+      courseAnn.textContent = '';
+      requestAnimationFrame(function() {
+        courseAnn.textContent = 'Found course library resources for "' + query + '".';
+      });
+      return;
+    }
+
+    // Likewise, a query that's an exact match to a subject/course guide name
+    // (e.g. "project management", "nursing") takes priority over weak fuzzy
+    // tutorial matches — those otherwise mask a much better-fitting guide link.
+    var nameMatches = findNameGuideMatches(query);
+    if (nameMatches.length && nameMatches[0].score >= NAME_MATCH_OVERRIDE_THRESHOLD) {
+      logSearch(query, catFilter, fmtFilter, nameMatches.length);
+      renderNameGuideMatch(query, nameMatches);
+      var nameAnn = document.getElementById('search-announcer');
+      nameAnn.textContent = '';
+      requestAnimationFrame(function() {
+        nameAnn.textContent = 'Found guide resources for "' + query + '".';
+      });
+      return;
+    }
 
     var results = tutorials
       .map(function(t) {
@@ -718,14 +1812,12 @@
     var safeQuery = escapeHTML(query);
 
     if (!results.length) {
-      div.innerHTML = '<div class="no-results"><h3 id="results-heading" tabindex="-1">No tutorials found</h3><p>Try different keywords or adjust your filters.</p></div>';
-      var heading = document.getElementById('results-heading');
-      if (heading) heading.focus();
+      renderNoResultsFallback(query);
       return;
     }
 
-    var html = '<div style="margin-bottom:20px;"><h3 id="results-heading" tabindex="-1">Top ' + results.length
-      + ' Result' + (results.length > 1 ? 's' : '') + ' for: &ldquo;' + safeQuery + '&rdquo;</h3></div>';
+    var html = '<div style="margin-bottom:20px;"><h2 id="results-heading" tabindex="-1">Top ' + results.length
+      + ' Result' + (results.length > 1 ? 's' : '') + ' for: &ldquo;' + safeQuery + '&rdquo;</h2></div>';
 
     results.forEach(function(t) {
       var pct = scorePct(t.relevanceScore);
@@ -765,11 +1857,11 @@
         matchHTML = '<div class="smart-matching"><strong>Matched on:</strong> ' + escapeHTML(t.matches.join(', ')) + '</div>';
       }
 
-      html += '<article class="tutorial-card" aria-label="' + safeTitle + '">'
-        + '<h4 class="tutorial-title">'
+      html += '<article class="tutorial-card">'
+        + '<h3 class="tutorial-title">'
         + '<a href="' + safeLink + '" target="_blank" rel="noopener noreferrer">'
         + safeTitle + ' ' + extIcon()
-        + '</a></h4>'
+        + '</a></h3>'
         + '<div class="tutorial-meta">'
         + '<span class="meta-tag meta-category">' + safeCategory + '</span>'
         + '<span class="meta-tag meta-format' + (t.hasAlternatives ? ' preferred-format' : '') + '">' + safeFormat + '</span>'
