@@ -551,6 +551,10 @@
   function toTitleCase(str) {
     if (!str) return str;
     return str.replace(/\S+/g, function(word, offset) {
+      // Preserve words that already carry intentional non-leading capitalization
+      // (acronyms like IEEE/APA/SOS, mixed-case terms like PubMed/MeSH/O'Reilly)
+      // instead of collapsing them down to a single leading capital.
+      if (/[A-Z]/.test(word.slice(1))) return word;
       var clean = word.toLowerCase();
       if (offset !== 0 && minorWords.has(clean)) return clean;
       return clean.charAt(0).toUpperCase() + clean.slice(1);
@@ -1998,13 +2002,13 @@
     "Link": "https://subjectguides.lib.neu.edu/ld.php?content_id=74654847",
     "transcript_link": "",
     "primary_topic": "IEEE Citation",
-    "secondary_topics": "Figure citation, Image attribution, IEEE formatting, figure attribution",
+    "secondary_topics": "Figure citation, Image attribution, IEEE formatting, figure attribution, Engineering citation style",
     "learning_objectives": "Learn proper techniques for citing figures and images in IEEE citation style",
     "difficulty_level": "Intermediate",
     "student_questions_addressed": "How do I cite figures in IEEE? How do I reference images in IEEE? What's the format for IEEE figure citations?",
-    "search_intent_keywords": "IEEE citation, IEEE figure citation, IEEE image citation, IEEE format",
+    "search_intent_keywords": "IEEE citation, IEEE figure citation, IEEE image citation, IEEE format, engineering citation, engineering technical writing",
     "tools_mentioned": "IEEE citation style",
-    "when_to_use": "When writing technical papers requiring IEEE citation style"
+    "when_to_use": "When writing engineering or technical papers requiring IEEE citation style"
   },
   {
     "Category": "Cite Sources",
@@ -2014,13 +2018,13 @@
     "Link": "https://subjectguides.lib.neu.edu/ld.php?content_id=70720221",
     "transcript_link": "",
     "primary_topic": "IEEE Citation",
-    "secondary_topics": "Figure citation, Image attribution, IEEE formatting, figure attribution",
+    "secondary_topics": "Figure citation, Image attribution, IEEE formatting, figure attribution, Engineering citation style",
     "learning_objectives": "Learn proper techniques for citing figures and images in IEEE citation style",
     "difficulty_level": "Intermediate",
     "student_questions_addressed": "How do I cite figures in IEEE? How do I reference images in IEEE?",
-    "search_intent_keywords": "IEEE citation, IEEE figure citation, IEEE image citation, IEEE format",
+    "search_intent_keywords": "IEEE citation, IEEE figure citation, IEEE image citation, IEEE format, engineering citation, engineering technical writing",
     "tools_mentioned": "IEEE citation style",
-    "when_to_use": "When writing technical papers requiring IEEE citation style"
+    "when_to_use": "When writing engineering or technical papers requiring IEEE citation style"
   },
   {
     "Category": "Cite Sources",
@@ -2030,13 +2034,13 @@
     "Link": "https://subjectguides.lib.neu.edu/ld.php?content_id=74609686",
     "transcript_link": "",
     "primary_topic": "IEEE Interview Citation",
-    "secondary_topics": "IEEE formatting, Citing private communications in IEEE, Citing Personal interviews in IEEE",
+    "secondary_topics": "IEEE formatting, Citing private communications in IEEE, Citing Personal interviews in IEEE, Engineering citation style",
     "learning_objectives": "Learn to cite interviews and personal communications in IEEE citation style",
     "difficulty_level": "Intermediate",
     "student_questions_addressed": "How do I cite interviews in IEEE? How do I cite private communications in IEEE?",
-    "search_intent_keywords": "IEEE interviews, IEEE private communications, IEEE personal communications, IEEE citation",
+    "search_intent_keywords": "IEEE interviews, IEEE private communications, IEEE personal communications, IEEE citation, engineering citation, engineering technical writing",
     "tools_mentioned": "IEEE citation style",
-    "when_to_use": "When citing expert interviews in IEEE"
+    "when_to_use": "When citing expert interviews in engineering or technical IEEE papers"
   },
   {
     "Category": "Cite Sources",
@@ -2046,13 +2050,13 @@
     "Link": "https://subjectguides.lib.neu.edu/ld.php?content_id=70720208",
     "transcript_link": "",
     "primary_topic": "IEEE Interview Citation",
-    "secondary_topics": "IEEE formatting, Citing private communications in IEEE",
+    "secondary_topics": "IEEE formatting, Citing private communications in IEEE, Engineering citation style",
     "learning_objectives": "Learn to cite interviews and personal communications in IEEE citation style",
     "difficulty_level": "Intermediate",
     "student_questions_addressed": "How do I cite interviews in IEEE?",
-    "search_intent_keywords": "IEEE interviews, IEEE private communications, IEEE personal communications, IEEE citation",
+    "search_intent_keywords": "IEEE interviews, IEEE private communications, IEEE personal communications, IEEE citation, engineering citation, engineering technical writing",
     "tools_mentioned": "IEEE citation style",
-    "when_to_use": "When citing expert interviews in IEEE"
+    "when_to_use": "When citing expert interviews in engineering or technical IEEE papers"
   },
   {
     "Category": "Cite Sources",
@@ -2408,7 +2412,7 @@
   },
   {
     "Category": "Generative AI",
-    "Tutorial title": "Evaluating AI REsults",
+    "Tutorial title": "Evaluating AI Results",
     "Tutorial type": "Module",
     "Format": "H5p",
     "Link": "https://northeastern.h5p.com/content/1292628469481452198",
